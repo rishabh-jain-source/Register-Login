@@ -35,5 +35,5 @@ const studentSchema=new mongoose.Schema({
         unique:[true,"Number already exists"]
     },
 })
-const Student=new mongoose.model("User",studentSchema);
-module.exports=Student
+const User=new mongoose.model("User",studentSchema);
+module.exports=User
