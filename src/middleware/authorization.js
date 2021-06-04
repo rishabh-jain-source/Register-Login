@@ -1,18 +1,12 @@
-const jwt=require("jsonwebtoken");
-
-module.exports=async function(req,res,next){
-    //GET TOKEN
-    const token=req.header('authorization')
-    console.log("MYTOKEN--->>>",token)
-    if(!!!token){
-        return res.json("No Token")
+const jwt=require('jsonwebtoken')
+module.exports=function(req,res,next){
+    const token=req.header("Authorization")
+    if(!token){
+       return res.status(401).json({msg:"NO TOKEN CANNOT ACCESS"})
     }
-    try{
-        const decoded=jwt.verify(token,"secretKeyHelloOneTwo")
-        req.user=decoded.user;
-        next();
-    }
-    catch(err){
-        res.json({err})
-    }
+    const decoder=jwt.verify(token,"secretKeyHelloOneTwo")
+    req.user=decoder.user;
+    console.log(req.user)
+    console.log("authorization",req.user)
+    next();
 }

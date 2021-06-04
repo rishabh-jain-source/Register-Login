@@ -11,10 +11,6 @@ MongoClient.connect(URL,{useNewUrlParser:true},(err,client)=>{
     }
     console.log("CONNECTED TO DATABASE");
     const db=client.db(databse)
-    // db.collection('users').insertOne({
-    //     "name":"rishabhjain",
-    //     "age":"20"
-    // })
     db.collection('users').find({age:"20"}).toArray((err,user)=>{
         if(err){
             return console.log('no data found')
